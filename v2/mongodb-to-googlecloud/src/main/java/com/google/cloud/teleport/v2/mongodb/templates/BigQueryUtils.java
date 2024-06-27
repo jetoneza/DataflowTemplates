@@ -70,9 +70,6 @@ public class BigQueryUtils implements Serializable {
           }
         });
 
-    LocalDateTime localdate = LocalDateTime.now(ZoneId.of("UTC"));
-    row.set("timestamp", localdate.format(TIMEFORMAT));
-
     return row;
   }
 }
