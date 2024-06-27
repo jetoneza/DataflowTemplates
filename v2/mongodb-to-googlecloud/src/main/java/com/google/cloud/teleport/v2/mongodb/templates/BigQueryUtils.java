@@ -48,8 +48,7 @@ public class BigQueryUtils implements Serializable {
               row.set(key, value);
               break;
             case "org.bson.Document":
-              Document subDoc = Document.parse(value.toString());
-              TableRow data = getTableSchema(subDoc);
+              TableRow data = getTableSchema((Document) value);
               row.set(key, data);
               break;
             case "java.util.ArrayList":
@@ -58,8 +57,7 @@ public class BigQueryUtils implements Serializable {
               List<Object> array = new ArrayList<>();
               for (Object item : valueList) {
                 if (item instanceof Document) {
-                  Document subDocItem = Document.parse(item.toString());
-                  TableRow dataItem = getTableSchema(subDocItem);
+                  TableRow dataItem = getTableSchema((Document) item);
                   array.add(dataItem);
                 } else {
                   array.add(item);
