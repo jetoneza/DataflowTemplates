@@ -143,6 +143,7 @@ public class MongoDbToBigQueryCdcCustom {
         .apply(
             BigQueryIO.writeTableRows()
                 .to(options.getOutputTableSpec())
+                .withCreateDisposition(BigQueryIO.Write.CreateDisposition.CREATE_NEVER)
                 .withWriteDisposition(BigQueryIO.Write.WriteDisposition.WRITE_APPEND));
     pipeline.run();
     return true;
