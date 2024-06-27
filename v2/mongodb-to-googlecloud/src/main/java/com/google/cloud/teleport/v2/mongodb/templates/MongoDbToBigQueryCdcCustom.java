@@ -21,6 +21,7 @@ import com.google.cloud.teleport.metadata.TemplateCategory;
 import com.google.cloud.teleport.metadata.TemplateParameter;
 import com.google.cloud.teleport.v2.common.UncaughtExceptionLogger;
 import com.google.cloud.teleport.v2.mongodb.options.MongoDbToBigQueryOptions;
+import com.google.cloud.teleport.v2.mongodb.templates.MongoDbToBigQueryCdcCustom.Options;
 import com.google.cloud.teleport.v2.options.BigQueryStorageApiStreamingOptions;
 import com.google.cloud.teleport.v2.transforms.JavascriptDocumentTransformer;
 import com.google.cloud.teleport.v2.utils.BigQueryIOUtils;
@@ -43,7 +44,7 @@ import org.bson.Document;
     description =
         "The MongoDB to BigQuery CDC (Change Data Capture) template is a streaming pipeline that works together with MongoDB change streams. "
             + "The pipeline reads the JSON records pushed to Pub/Sub via a MongoDB change stream and writes them to BigQuery.",
-    optionsClass = MongoDbToBigQueryCdc.Options.class,
+    optionsClass = Options.class,
     flexContainerName = "mongodb-to-bigquery-cdc",
     documentation =
         "https://cloud.google.com/dataflow/docs/guides/templates/provided/mongodb-change-stream-to-bigquery",

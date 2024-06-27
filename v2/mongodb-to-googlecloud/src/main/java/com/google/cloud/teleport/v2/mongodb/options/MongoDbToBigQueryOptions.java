@@ -26,7 +26,7 @@ import org.apache.beam.sdk.options.PipelineOptions;
  * executor at the command-line.
  */
 public class MongoDbToBigQueryOptions {
-  /** Custom Options */
+  /** Custom Options. */
   public interface CustomOptions extends PipelineOptions, DataflowPipelineOptions {
     @TemplateParameter.Text(
         order = 1,
