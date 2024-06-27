@@ -17,17 +17,11 @@ package com.google.cloud.teleport.v2.mongodb.templates;
 
 import com.google.api.services.bigquery.model.TableRow;
 import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import org.bson.Document;
 
 public class BigQueryUtils implements Serializable {
-  static final DateTimeFormatter TIMEFORMAT =
-      DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
-
   public static TableRow getTableSchema(Document document) {
     TableRow row = new TableRow();
 
