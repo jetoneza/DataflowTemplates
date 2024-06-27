@@ -35,8 +35,6 @@ import org.apache.beam.sdk.options.PipelineOptionsFactory;
 import org.apache.beam.sdk.transforms.DoFn;
 import org.apache.beam.sdk.transforms.ParDo;
 import org.bson.Document;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @Template(
     name = "MongoDB_to_BigQuery_CDC_Custom",
@@ -58,16 +56,12 @@ import org.slf4j.LoggerFactory;
     streaming = true,
     supportsAtLeastOnce = true)
 public class MongoDbToBigQueryCdcCustom {
-
-  private static final Logger LOG = LoggerFactory.getLogger(MongoDbToBigQuery.class);
-
   /** Options interface. */
   public interface Options
       extends PipelineOptions,
-          MongoDbToBigQueryOptions.MongoDbOptions,
+          MongoDbToBigQueryOptions.CustomOptions,
           MongoDbToBigQueryOptions.PubSubOptions,
           MongoDbToBigQueryOptions.BigQueryWriteOptions,
-          MongoDbToBigQueryOptions.JavascriptDocumentTransformerOptions,
           BigQueryStorageApiStreamingOptions {
 
     // Hide the UseStorageWriteApiAtLeastOnce in the UI, because it will automatically be turned
@@ -89,15 +83,6 @@ public class MongoDbToBigQueryCdcCustom {
     Boolean getUseStorageWriteApiAtLeastOnce();
 
     void setUseStorageWriteApiAtLeastOnce(Boolean value);
-  }
-
-  /** class ParseAsDocumentsFn. */
-  private static class ParseAsDocumentsFn extends DoFn<String, Document> {
-
-    @ProcessElement
-    public void processElement(ProcessContext context) {
-      context.output(Document.parse(context.element()));
-    }
   }
 
   /**

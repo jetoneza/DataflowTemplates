@@ -26,6 +26,19 @@ import org.apache.beam.sdk.options.PipelineOptions;
  * executor at the command-line.
  */
 public class MongoDbToBigQueryOptions {
+  /** Custom Options */
+  public interface CustomOptions extends PipelineOptions, DataflowPipelineOptions {
+    @TemplateParameter.Text(
+        order = 1,
+        groupName = "Source",
+        description = "Collection",
+        helpText =
+            "Name of the collection inside MongoDB database. This is also the folder in the bucket",
+        example = "invoices")
+    String getCollection();
+
+    void setCollection(String collection);
+  }
 
   /** Options for Reading MongoDb Documents. */
   public interface MongoDbOptions extends PipelineOptions, DataflowPipelineOptions {
