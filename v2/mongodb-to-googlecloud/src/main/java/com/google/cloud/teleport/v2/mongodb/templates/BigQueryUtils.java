@@ -51,8 +51,7 @@ public class BigQueryUtils implements Serializable {
               List<Object> array = new ArrayList<>();
               for (Object item : valueList) {
                 if (item instanceof Document) {
-                  TableRow dataItem = getTableSchema((Document) item);
-                  array.add(dataItem);
+                  array.add(((Document) item).toJson());
                 } else {
                   array.add(item);
                 }
