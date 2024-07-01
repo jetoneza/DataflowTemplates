@@ -42,8 +42,8 @@ public class BigQueryUtils implements Serializable {
               row.set(key, value);
               break;
             case "org.bson.Document":
-              TableRow data = getTableSchema((Document) value);
-              row.set(key, data);
+              Document doc = (Document) value;
+              row.set(key, doc.toJson());
               break;
             case "java.util.ArrayList":
             case "java.util.List":
